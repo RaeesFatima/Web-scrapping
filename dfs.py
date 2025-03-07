@@ -1,5 +1,5 @@
 def dfs(graph, start):
-    
+
     stack = [start]  
     visited = set()  
 
@@ -16,13 +16,14 @@ def dfs(graph, start):
                     stack.append(neighbor)
 
 # Example Graph (Adjacency List)
-graph = {
-    '0': ['1', '2'],  
-    '1': ['0','2'],
-    '2': ['0','1','2','3','4'],
-    '3': ['2'],
-    '4': ['2'],
+graph={
+    'A': ['B', 'C'],
+    'B': ['A', 'D', 'E'],
+    'C': ['A', 'F'],
+    'D': ['B'],
+    'E': ['B', 'F'],
+    'F': ['C', 'E']
 }
 
 print("DFS Traversal:")
-dfs(graph, '1')  # Expected Output: A B D E F C
+dfs(graph, 'A')  # Expected Output: A B D E F C

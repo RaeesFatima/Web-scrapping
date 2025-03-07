@@ -1,36 +1,30 @@
 from collections import deque
-
 def bfs(graph,start):
+    visited =set()
     queue=deque()
-    visited=set()
-
     order=[]
 
-    queue.append(start)
     visited.add(start)
-
+    queue.append(start)
     while queue:
         current=queue.popleft()
         order.append(current)
 
-        for neighbors in graph[current]:
-            if neighbors not in visited:
-                queue.append(neighbors)
-                visited.add(neighbors) 
-
+        for neighbor in graph[current]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                order.append(neighbor)
+    
     return order
 
-graph = {
-    '0': ['1', '2'],
-    '1': ['3', '4'],
-    '2': ['5', '6'],
-    '3': [],
-    '4': ['7'],
-    '5': [],
-    '6': [],
-    '7': []
+graph={
+    'A': ['B', 'C'],
+    'B': ['A', 'D', 'E'],
+    'C': ['A', 'F'],
+    'D': ['B'],
+    'E': ['B', 'F'],
+    'F': ['C', 'E']
 }
 
-
-result=bfs(graph,'0')
+result=bfs(graph,'A')
 print('here is the result of bfs: ',result)
