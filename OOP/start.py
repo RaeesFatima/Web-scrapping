@@ -56,3 +56,12 @@ print(my_car.model)
 # print(Car.total_car)
 
 # print(Car.general_description())
+
+class Battery:
+    pass
+class Engine:
+    pass
+
+#multiple inheritance
+class ElectricCarTwo(Car,Battery,Engine):
+    pass
