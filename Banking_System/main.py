@@ -42,7 +42,7 @@ passwrd=input("Please enter your password : ")
 acc_type = input("\nEnter account type (Saving/Current): ").strip().lower()
 if acc_type == "saving":
     user1 = SavingAccount(name, passwrd)
-    # print("you have chosen savign")
+    # print("you have chosen saving")
 elif acc_type == "current":
     user1 = CurrentAccount(name, passwrd)
 else:
@@ -54,3 +54,32 @@ if menu == 0:
     show_menu(user1)
 else:
     print("\nThank you for using our banking system. Goodbye!")
+
+
+import mysql.connector
+
+mydb = mysql.connector.connect(
+  host="localhost",
+  user="root",
+  password="home",
+  database="mydatabase"
+)
+
+mycursor = mydb.cursor()
+
+# Insert a new user (Ensure this is done first)
+sql = "INSERT INTO users (name, password) VALUES (%s, %s)"
+val = ("raees", "home")
+mycursor.execute(sql, val)
+mydb.commit()
+
+
+user_id = mycursor.lastrowid
+
+
+sql = "INSERT INTO transactions (transaction_made, balance, userid) VALUES (%s, %s, %s)"
+val = ("deposit", 3000, user_id)
+mycursor.execute(sql, val)
+mydb.commit()
+
+print(mycursor.rowcount, "record inserted in transactions.")

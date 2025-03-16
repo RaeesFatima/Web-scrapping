@@ -4,23 +4,23 @@ class UserAccount:
         self.__username=username
         self.__password=password
         UserAccount.account_number+=1
-        self.__balance=130
+        self.balance=0
 
     @property
     def username(self):
-        return  self.__username
+        return self.__username
 
     @property
     def password(self):
         return self.__password
 
-    @property
-    def balance(self):
-        return self.__balance
+    # @property
+    # def balance(self):
+    #     return self.balance
 
-    @balance.setter
-    def balance(self, amount):
-        self.__balance = amount
+    # @balance.setter
+    # def balance(self, amount):
+    #     self.balance = amount
 
     @username.setter
     def username(self,new_username):
@@ -40,8 +40,8 @@ class UserAccount:
             try:
                 amount = int(input("Enter amount to deposit: "))
                 if amount>0:
-                    self.__balance=self.__balance+amount
-                    print("Money deposited, Current balance is: ",self.__balance)
+                    self.balance=self.balance+amount
+                    print("Money deposited, Current balance is: ",self.balance)
                     break
                 else:
                     print("Invalid amount!!!!")
@@ -50,23 +50,23 @@ class UserAccount:
                 print("Invalid input! Please enter a valid number.")
                 self.get_valid_amount()
 
-        # return self.__balance
+        # return self.balance
 
     def withdraw(self):
         while True:
             try:
                 amount=int(input("Enter amount to withdraw: "))
-                if amount > self.__balance:
+                if amount > self.balance:
                     print("Insufficient balance")
                     self.get_valid_amount()
                 elif amount<=0:
                     print("Invalid amount!!!")
                     self.get_valid_amount()
                 else:
-                    self.__balance = self.__balance - amount
-                    print("Money withdraw, Current balance is: ", self.__balance)
+                    self.balance = self.balance - amount
+                    print("Money withdraw, Current balance is: ", self.balance)
                     break
             except ValueError:
                 print("Invalid input! Please enter a valid number.")
                 self.get_valid_amount()
-        # return self.__balance
+        # return self.balance
